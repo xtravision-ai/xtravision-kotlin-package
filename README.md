@@ -193,3 +193,7 @@ class MainActivity : AppCompatActivity(), XtraVisionAIListener {
      */
 }
 ```
+
+
+### Sample App:
+https://github.com/xtravision-ai/XtraVision-KotlinSampleApp

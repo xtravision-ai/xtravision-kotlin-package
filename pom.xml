@@ -10,7 +10,7 @@
   <groupId>ai.xtravision</groupId>
   <artifactId>pose-detection</artifactId>
   <version>3.0.1</version>
-  <packaging>aar</packaging>
+  <!-- <packaging>aar</packaging> -->
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>

@@ -111,6 +111,25 @@ Host AAR file.
 	}
 	```
 
+5. To clean up SDK cached data, use the following activity lifecycle method. (Always clear data when you completed assessment).
+	```kotlin
+	override fun onPause() {
+		super.onPause()
+		xtraVisionAIManger?.onPause()
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+		xtraVisionAIManger?.onDestroy()
+	}
+
+	// on back-press destroy current activity, to prevent conflict with previous assessment
+	override fun onBackPressed() {
+		super.onBackPressed()
+		finish()
+	}
+
+	```
 ---
 
 #### The final code for the Activity Class looks like this:
@@ -164,6 +183,22 @@ class MainActivity : AppCompatActivity(), XtraVisionAIListener {
         } else {
             XtraVisionPermissionHelper.checkAndRequestCameraPermissions(this)
         }
+    }
+    
+    override fun onPause() {
+		super.onPause()
+		xtraVisionAIManger?.onPause()
+	    }
+
+    override fun onDestroy() {
+	super.onDestroy()
+	xtraVisionAIManger?.onDestroy()
+    }
+
+    // on back-press destroy current activity, to prevent conflict with previous assessment
+    override fun onBackPressed() {
+	super.onBackPressed()
+	finish()
     }
 
     /**

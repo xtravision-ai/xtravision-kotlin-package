@@ -56,6 +56,7 @@ Host AAR file.
 	import ai.xtravision.*
 	import ai.xtravision.util.*
 	import androidx.camera.view.PreviewView
+    import android.graphics.Color
 	```
 3.  Prepare SDK-required data:
 	1. XtraVision-Connection-Data: contain all connection-specific information.
@@ -85,14 +86,23 @@ Host AAR file.
                 assessmentConfig = assessmentConfig
                 )
     val requestData = XtraVisionRequestData(
-                            isPreJoin = isPreJoin
+                isPreJoin = isPreJoin
+                )
+    val skeletonConfig = XtraVisionSkeletonConfig(
+                dotRadius = 8.0f,
+                dotColor = Color.WHITE,
+                leftLineWidth = 15f,
+                leftLineColor = Color.RED,
+                rightLineWidth = 15f,
+                rightLineColor = Color.BLUE
                 )
     val libData = XtraVisionLibData(
                 context = this,
                 previewView = myPreviewView,
                 responseListener = myResponseListener,
                 selectedCamera = mySelectedCamera,
-                enableSkeletonView = true 
+                enableSkeletonView = true,
+                skeletonConfig = skeletonConfig 
                 )
     ```
 
@@ -143,6 +153,7 @@ import android.os.Bundle
 import ai.xtravision.*
 import ai.xtravision.util.*
 import androidx.camera.view.PreviewView
+import android.graphics.Color
 
 import android.util.Log
 
@@ -163,12 +174,21 @@ class MainActivity : AppCompatActivity(), XtraVisionAIListener {
         //Objects: connectionData, requestData, and libData
         val connectionData = XtraVisionConnectionData(authToken, assessmentName)
         val reqData = XtraVisionRequestData(isPreJoin)
+        val skeletonConfig = XtraVisionSkeletonConfig(
+            dotRadius = 8.0f,
+            dotColor = Color.WHITE,
+            leftLineWidth = 15f,
+            leftLineColor = Color.RED,
+            rightLineWidth = 15f,
+            rightLineColor = Color.BLUE
+		)
         val libData = XtraVisionLibData(
             this,
             previewView,
             this,
             selectedCamera,
-			enableSkeletonView = true
+            enableSkeletonView = true
+            skeletonConfig = skeletonConfig
         )
 
         // Check and Ask for Camera permission
